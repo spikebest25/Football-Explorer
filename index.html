@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Football Archive | Explorer</title>
+
+    <link rel="stylesheet" href="explorer.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <button id="toggleSidebar" class="toggle-btn">☰</button>
+        <div class="sidebar-top">
+          <h2>
+            ⚽
+            <span>Football Archive</span>
+          </h2>
+          <p>Ultimate Football Hub</p>
+        </div>
+
+        <nav>
+          <a href="index.html">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Explorer</span>
+          </a>
+          <a href="players.html">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Player Database</span>
+          </a>
+
+          <a href="arena.html"
+            ><span class="nav-icon">⚽</span>
+            <span class="nav-text">Football Arena</span>
+          </a>
+
+          <a href="collection.html">
+            <span class="nav-icon">🎴</span>
+            <span class="nav-text">Ultimate Collection</span>
+          </a>
+
+          <a href="packs.html">
+            <span class="nav-icon">📦</span>
+            <span class="nav-text">Pack Opening</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-extra">
+          <div class="sidebar-card">❤️ Favorites</div>
+
+          <div class="sidebar-card">🏆 Achievements</div>
+
+          <div class="sidebar-card">📊 Statistics</div>
+        </div>
+
+        <div class="sidebar-bottom">
+          <p>Collection</p>
+
+          <div class="progress">
+            <div class="progress-fill"></div>
+          </div>
+
+          <small>0 / 300 Players</small>
+        </div>
+      </aside>
+
+      <div class="content">
+        <main class="dashboard-container">
+          <!-- HERO -->
+
+          <section class="hero-banner">
+            <div class="hero-content">
+              <h1>Discover Football's Greatest Players</h1>
+
+              <p class="hero-subtitle">
+                Search through our growing football database and explore player
+                profiles, career statistics, biographies and more.
+              </p>
+            </div>
+          </section>
+
+          <!-- SEARCH -->
+
+          <section class="search-section">
+            <div class="search-actions">
+              <form id="searchForm">
+                <input
+                  type="text"
+                  id="playerInput"
+                  placeholder="Search any football player..."
+                  autocomplete="off"
+                  required
+                />
+
+                <button type="submit" class="btn-search">Search</button>
+              </form>
+
+              <button type="button" id="randomBtn" class="btn-random">
+                🎲 Random Player
+              </button>
+
+              <div class="player-navigation">
+                <button id="previousBtn" class="nav-btn">⬅ Previous</button>
+
+                <button id="nextBtn" class="nav-btn">Next ➡</button>
+              </div>
+
+              <div class="history-box">
+                <h3>Recent Searches</h3>
+
+                <div id="searchHistory"></div>
+              </div>
+            </div>
+
+            <div id="loading" class="loading">
+              <div class="spinner"></div>
+
+              <p>Searching player...</p>
+            </div>
+
+            <div id="suggestions" class="suggestions"></div>
+          </section>
+
+          <!-- PLAYER DISPLAY -->
+
+          <div class="display-grid">
+            <!-- PROFILE CARD -->
+
+            <aside class="profile-card">
+              <div class="player-avatar-container">
+                <img
+                  id="playerImage"
+                  src="https://placehold.co/300x300?text=Player"
+                  alt="Player"
+                  class="player-photo"
+                />
+              </div>
+
+              <h2 id="playerName" class="player-name">Select a Player</h2>
+
+              <div class="club-badge-row">
+                <span id="playerTeam" class="badge club"> Team </span>
+
+                <span id="playerNationality" class="badge nation">
+                  Nationality
+                </span>
+              </div>
+
+              <div class="meta-stats-grid">
+                <div class="meta-box">
+                  <small> Position </small>
+
+                  <p id="playerPosition">-</p>
+                </div>
+
+                <div class="meta-box">
+                  <small> Birth Date </small>
+
+                  <p id="playerBirth">-</p>
+                </div>
+
+                <div class="meta-box">
+                  <small> Gender </small>
+
+                  <p id="playerGender">-</p>
+                </div>
+              </div>
+            </aside>
+
+            <!-- RIGHT SIDE -->
+
+            <section class="stats-workspace">
+              <div class="tabs-row">
+                <button class="tab-btn active" data-target="overview">
+                  Overview
+                </button>
+
+                <button class="tab-btn" data-target="details">Details</button>
+
+                <button class="tab-btn" data-target="bio">Biography</button>
+              </div>
+
+              <!-- OVERVIEW -->
+
+              <div class="tab-content active" id="overview">
+                <div class="summary-cards-grid">
+                  <div class="summary-card">
+                    <h3>Height</h3>
+
+                    <div class="value" id="playerHeight">Unknown</div>
+                  </div>
+
+                  <div class="summary-card">
+                    <h3>Weight</h3>
+
+                    <div class="value" id="playerWeight">Unknown</div>
+                  </div>
+
+                  <div class="summary-card">
+                    <h3>Age</h3>
+
+                    <div class="value" id="playerAge">Loading...</div>
+                  </div>
+
+                  <div class="summary-card">
+                    <h3>Current Club</h3>
+
+                    <div class="value" id="playerClubApi">Loading...</div>
+                  </div>
+
+                  <div class="summary-card stat-highlight">
+                    <h3>Career Goals</h3>
+
+                    <div class="value" id="playerGoals">-</div>
+                  </div>
+
+                  <div class="summary-card stat-highlight">
+                    <h3>Career Assists</h3>
+
+                    <div class="value" id="playerAssists">-</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DETAILS -->
+
+              <div class="tab-content" id="details">
+                <table class="data-table">
+                  <tbody>
+                    <tr>
+                      <td>Team</td>
+                      <td id="detailTeam">Unknown</td>
+                    </tr>
+
+                    <tr>
+                      <td>Nationality</td>
+                      <td id="detailNationality">Unknown</td>
+                    </tr>
+
+                    <tr>
+                      <td>Position</td>
+                      <td id="detailPosition">Unknown</td>
+                    </tr>
+
+                    <tr>
+                      <td>Date of Birth</td>
+                      <td id="detailBirth">Unknown</td>
+                    </tr>
+
+                    <tr>
+                      <td>Gender</td>
+                      <td id="detailGender">Unknown</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- BIOGRAPHY -->
+
+              <div class="tab-content" id="bio">
+                <p id="playerDescription">
+                  Search for a player to view their biography.
+                </p>
+              </div>
+            </section>
+          </div>
+        </main>
+
+        <footer class="site-footer">
+          <h3>Football Archive</h3>
+
+          <p>
+            Your football player database built with HTML, CSS, JavaScript, JSON
+            and TheSportsDB API.
+          </p>
+
+          <p>© 2026 Football Archive</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Update this tag in explorer.html -->
+<script type="module" src="explorer.js"></script>
+  </body>
+</html>

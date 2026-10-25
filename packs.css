@@ -1,0 +1,1148 @@
+/* ==========================================
+   PACK PAGE
+========================================== */
+
+.pack-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  margin: 45px 0;
+  align-items: start;
+}
+
+/* ==========================================
+   STATS
+========================================== */
+
+.pack-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 24px;
+  margin-bottom: 45px;
+}
+
+.stat-box {
+  background: rgba(16, 24, 39, 0.82);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  padding: 28px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: 0.3s;
+}
+
+.stat-box:hover {
+  transform: translateY(-8px);
+  border-color: #3b82f6;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.stat-box h3 {
+  color: #9bb0c7;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.stat-box h2 {
+  color: #60a5fa;
+  font-size: 2rem;
+}
+
+/* ==========================================
+   LEFT SIDE
+========================================== */
+
+.pack-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pack-container {
+  width: 100%;
+  min-height: 560px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 30px;
+
+  background: rgba(16, 24, 39, 0.82);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+}
+
+/* ==========================================
+   PACK
+========================================== */
+
+.pack {
+  width: 280px;
+  height: 390px;
+
+  border-radius: 28px;
+
+  position: relative;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(145deg, #ffd75e, #d6a11d);
+
+  border: 4px solid #ffe08a;
+
+  transition: 0.35s;
+
+  box-shadow:
+    0 25px 45px rgba(0, 0, 0, 0.45),
+    0 0 45px rgba(255, 210, 90, 0.35);
+
+  animation: floatPack 3s ease-in-out infinite;
+}
+
+.pack:hover {
+  transform: translateY(-10px) scale(1.04);
+}
+
+.pack::before {
+  content: "";
+
+  position: absolute;
+
+  top: -120%;
+  left: -40%;
+
+  width: 60%;
+  height: 260%;
+
+  background: linear-gradient(
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+
+  transform: rotate(25deg);
+}
+
+.pack-front {
+  text-align: center;
+  z-index: 2;
+  color: #172033;
+}
+
+.pack-logo {
+  font-size: 5rem;
+  margin-bottom: 18px;
+}
+
+.pack-front h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.pack-front p {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.open-pack-btn {
+  margin-top: 30px;
+
+  width: 280px;
+
+  padding: 18px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.open-pack-btn:hover {
+  transform: translateY(-4px);
+
+  background: #3b82f6;
+
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+}
+
+/* ==========================================
+   SHOP
+========================================== */
+
+.shop-panel {
+  background: rgba(16, 24, 39, 0.82);
+
+  backdrop-filter: blur(18px);
+
+  border-radius: 30px;
+
+  padding: 28px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panel-card {
+  background: rgba(255, 255, 255, 0.05);
+
+  border-radius: 20px;
+
+  padding: 22px;
+
+  margin-bottom: 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panel-card h2 {
+  text-align: center;
+
+  margin-bottom: 15px;
+}
+
+.panel-card p {
+  color: #9bb0c7;
+
+  line-height: 1.6;
+}
+
+.shop-item {
+  margin-top: 20px;
+
+  padding: 18px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  transition: 0.3s;
+}
+
+.shop-item:hover {
+  transform: translateY(-5px);
+
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.shop-item h3 {
+  margin-bottom: 10px;
+}
+
+.shop-item p {
+  margin-bottom: 18px;
+}
+
+#buyProtection,
+#buyLucky,
+#buyIcon,
+#dailyRewardBtn {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  color: white;
+
+  background: #2563eb;
+
+  transition: 0.3s;
+}
+
+#dailyRewardBtn {
+  background: #16a34a;
+}
+
+#buyProtection:hover,
+#buyLucky:hover,
+#buyIcon:hover {
+  background: #3b82f6;
+}
+
+#dailyRewardBtn:hover {
+  background: #22c55e;
+}
+
+/* ==========================================
+   REVEAL
+========================================== */
+
+.reveal-section {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(4, 8, 15, 0.82);
+  backdrop-filter: blur(12px);
+
+  z-index: 99999;
+}
+
+.reveal-section.active {
+  display: flex;
+}
+.reveal-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:18px;
+
+    width:100%;
+    height:100%;
+
+    padding:25px;
+}
+.reveal-section{
+    overflow-y:auto;
+}
+.reveal-buttons {
+  margin-top: 35px;
+
+  display: flex;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+.reveal-buttons button {
+  padding: 15px 28px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-weight: 700;
+
+  transition: 0.3s;
+}
+
+#anotherPack {
+  background: #2563eb;
+}
+
+#viewCollection {
+  background: #16a34a;
+}
+
+.reveal-buttons button:hover {
+  transform: translateY(-4px);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@keyframes floatPack {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* ==========================================
+   PLAYER CARD
+========================================== */
+
+.player-card {
+     width:380px;
+    min-height:540px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 30px;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background: linear-gradient(180deg, #16233a, #0d1727);
+
+  border: 3px solid #3b82f6;
+
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+
+  transition: 0.35s;
+
+  animation: cardReveal 0.7s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* ==========================================
+   CARD IMAGE
+========================================== */
+.player-card img{
+
+    width:210px;
+    height:210px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    display:block;
+
+    margin:55px auto 18px;
+
+    position:relative;
+
+    z-index:5;
+}
+.player-card.common img {
+  border: 5px solid #d5dbe5;
+}
+
+.player-card.rare img {
+  border: 5px solid #8fd0ff;
+}
+
+.player-card.epic img {
+  border: 5px solid #d7b8ff;
+}
+
+.player-card.legendary img {
+  border: 5px solid gold;
+}
+
+.player-card.icon img {
+  border: 6px solid white;
+
+  box-shadow: 0 0 30px gold;
+}
+.player-card h2{
+
+    margin-top:8px;
+
+    margin-bottom:18px;
+
+    font-size:2.3rem;
+
+    text-align:center;
+
+    font-weight:800;
+}
+.player-card p {
+  width: 100%;
+
+  margin: 8px 0;
+
+  color: #d6deea;
+
+  font-size: 1.08rem;
+
+  text-align: center;
+}
+.rarity-badge {
+  position: absolute;
+
+  top: 18px;
+
+  right: 18px;
+
+  padding: 9px 18px;
+
+  border-radius: 999px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  font-size: 0.8rem;
+
+  color: white;
+}
+
+.player-card.common .rarity-badge {
+  background: #6b7280;
+}
+
+.player-card.rare .rarity-badge {
+  background: #3b82f6;
+}
+
+.player-card.epic .rarity-badge {
+  background: #9333ea;
+}
+
+.player-card.legendary .rarity-badge {
+  background: gold;
+  color: black;
+}
+
+.player-card.icon .rarity-badge {
+  background: white;
+
+  color: #111;
+}
+/* ==========================================
+RARITY DESIGNS
+========================================== */
+
+.player-card.common {
+  background: linear-gradient(145deg, #5d6472, #80889a);
+
+  border: 4px solid #c7ced9;
+
+  color: white;
+}
+
+.player-card.rare {
+  background: linear-gradient(145deg, #1246b8, #56a8ff);
+
+  border: 4px solid #8bd3ff;
+
+  color: white;
+
+  box-shadow: 0 0 45px rgba(80, 170, 255, 0.45);
+}
+
+.player-card.epic {
+  background: linear-gradient(145deg, #5b21b6, #a855f7);
+
+  border: 4px solid #d8b4fe;
+
+  color: white;
+
+  box-shadow: 0 0 55px rgba(168, 85, 247, 0.5);
+}
+
+.player-card.legendary {
+  background: linear-gradient(145deg, #3b2400, #ff9900);
+
+  border: 4px solid #ffd966;
+
+  color: white;
+
+  box-shadow: 0 0 60px rgba(255, 170, 0, 0.55);
+}
+
+.player-card.icon {
+  background: linear-gradient(
+    135deg,
+    #fff8d6 0%,
+    #f8e18d 35%,
+    #fff4bf 70%,
+    #edd07d 100%
+    
+  );
+
+  color: #222;
+
+  border: 5px solid #fff7c2;
+
+  box-shadow: 0 0 70px rgba(255, 230, 120, 0.7);
+}
+.player-card.icon{
+
+    background:
+        radial-gradient(circle at top,#fffef7 0%,#fff2be 45%,#e5c56f 100%);
+
+    overflow:hidden;
+}
+
+.player-card.icon::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:14px;
+
+    border:2px solid rgba(255,255,255,.65);
+
+    border-radius:20px;
+
+    pointer-events:none;
+}
+/* ==========================================
+   ICON TEXT STYLE
+========================================== */
+
+.player-card.icon .player-info{
+    margin-top:-5px;      /* was 28px */
+    gap:10px;
+}
+.player-card.icon .info-row{
+
+    font-family:Georgia,serif;
+
+    font-size:1.08rem;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    font-weight:700;
+
+    color:#654400;
+
+    line-height:1.3;
+}
+
+.player-card.icon #cardNation,
+.player-card.icon #cardClub,
+.player-card.icon #cardPosition{
+
+    font-family:"Brush Script MT","Segoe Script",cursive;
+
+}
+
+.player-card.icon .club-badge{
+
+    width:42px;
+
+    height:42px;
+}
+.player-card.icon h2{
+
+    font-size:2.5rem;
+
+    color:#3b2a00;
+
+    text-shadow:
+        0 2px 8px rgba(255,255,255,.35);
+
+    margin-top:10px;
+
+}
+.player-card.icon #cardRating{
+
+    color:#d4a300;
+
+    font-size:4.8rem;
+
+    text-shadow:
+
+        0 0 12px gold,
+
+        0 0 28px #ffe76b,
+
+        2px 2px 0 #fff;
+
+}
+.player-card.icon .rarity-badge{
+
+    background:linear-gradient(135deg,#fff6bf,#ffd34d);
+
+    color:#4a3400;
+
+    border:2px solid #fff;
+
+    font-weight:800;
+
+}
+/* ==========================================
+   PACK OPENING
+========================================== */
+.pack.opening {
+  animation:
+    packShake 0.7s ease,
+    packPulse 0.7s ease;
+}
+@keyframes packShake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-6deg); }
+  40% { transform: rotate(6deg); }
+  60% { transform: rotate(-5deg); }
+  80% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes packPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+
+    filter: brightness(1.35);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes packZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(0);
+
+    opacity: 0;
+  }
+}
+@keyframes packOpening {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(8deg);
+  }
+  45% {
+    transform: rotate(-6deg);
+  }
+  60% {
+    transform: rotate(6deg);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pack.opening::before {
+  animation: shineMove 0.9s linear;
+}
+
+@keyframes shineMove {
+  from {
+    left: -70%;
+  }
+
+  to {
+    left: 170%;
+  }
+}
+
+/* ==========================================
+   CARD REVEAL
+========================================== */
+
+@keyframes cardReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+
+        perspective(900px)
+
+        rotateY(90deg)
+
+        scale(.75);
+
+    }
+
+    60%{
+
+        transform:
+
+        perspective(900px)
+
+        rotateY(-12deg)
+
+        scale(1.08);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+
+        perspective(900px)
+
+        rotateY(0deg)
+
+        scale(1);
+
+    }
+
+}
+
+/* ==========================================
+   FLASH
+========================================== */
+
+.flash {
+  position: fixed;
+
+  inset: 0;
+
+  background: white;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  z-index: 99999;
+}
+.flash.active{
+
+    animation:flash .28s ease;
+
+}
+
+@keyframes flash{
+
+    0%{
+
+        opacity:0;
+
+    }
+
+    45%{
+
+        opacity:.95;
+
+    }
+
+    100%{
+
+        opacity:0;
+
+    }
+
+}
+@keyframes screenFlash {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+  .pack-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .player-card {
+    width: 340px;
+  }
+
+  .shop-panel {
+    margin-top: 35px;
+  }
+}
+/* ==========================================
+   ICON SHINE
+========================================== */
+
+.player-card.icon::before {
+  content: "";
+
+  position: absolute;
+
+  top: -60%;
+
+  left: -80%;
+
+  width: 60%;
+
+  height: 220%;
+
+  transform: rotate(25deg);
+
+  background: linear-gradient(
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+
+  animation: iconShine 2.8s linear infinite;
+}
+
+@keyframes iconShine {
+  from {
+    left: -80%;
+  }
+
+  to {
+    left: 170%;
+  }
+}
+/* ==========================================
+   GOLD PARTICLES
+========================================== */
+
+.player-card.icon::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle, #fff 2px, transparent 3px) 15% 20%/120px 120px,
+    radial-gradient(circle, #ffe27a 2px, transparent 3px) 75% 30%/140px 140px,
+    radial-gradient(circle, #fff4b0 2px, transparent 3px) 30% 80%/150px 150px,
+    radial-gradient(circle, #fff 2px, transparent 3px) 80% 70%/130px 130px;
+
+  animation: sparkle 4s linear infinite;
+}
+
+@keyframes sparkle {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-25px);
+  }
+}
+.player-card {
+  animation: cardDrop 0.7s cubic-bezier(0.18, 1.4, 0.5, 1);
+}
+
+@keyframes cardDrop {
+  from {
+    opacity: 0;
+
+    transform: translateY(-120px) scale(0.7) rotateX(80deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1) rotateX(0);
+  }
+}
+/* ==========================================
+   CARD RATING
+========================================== */
+#cardRating{
+
+    position:absolute;
+
+    top:18px;
+    left:20px;
+
+    font-size:4rem;
+
+    font-weight:900;
+
+    line-height:1;
+
+    z-index:20;
+}
+
+.player-card.common #cardRating {
+  color: white;
+}
+
+.player-card.rare #cardRating {
+  color: #d5f0ff;
+
+  text-shadow: 0 0 10px #70d4ff;
+}
+
+.player-card.epic #cardRating {
+  color: #f2ddff;
+
+  text-shadow: 0 0 15px violet;
+}
+
+.player-card.legendary #cardRating {
+  color: #ffd45a;
+
+  text-shadow: 0 0 20px orange;
+}
+
+.player-card.icon #cardRating {
+  color: #ffb800;
+
+  text-shadow:
+    0 0 12px gold,
+    0 0 28px gold,
+    0 0 40px gold;
+}
+
+.player-card.icon .card-rating {
+  color: #f5b700;
+}
+
+/* ==========================================
+   NEW BADGE
+========================================== */
+
+.new-badge{
+
+    position:absolute;
+
+    bottom:24px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    padding:9px 22px;
+
+    border-radius:999px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    z-index:20; display: none;
+}
+
+.new-badge.duplicate{
+    background:#ef4444;
+}
+
+
+/* ===========================
+PLAYER INFO
+=========================== */
+.player-info{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:-10px;
+}
+.info-row{
+
+    width:78%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+
+    padding:8px 0;
+}
+.info-row:not(:last-child)::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-7px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:70%;
+
+    height:1px;
+
+    background:rgba(120,90,0,.28);
+}
+.club-badge {
+  width: 34px;
+
+  height: 34px;
+
+  object-fit: contain;
+}
+.player-card.icon::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  background-image: radial-gradient(white 2px, transparent 3px);
+
+  background-size: 60px 60px;
+
+  animation: sparkles 6s linear infinite;
+
+  opacity: 0.6;
+}
+
+@keyframes sparkles {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 120px 120px;
+  }
+}

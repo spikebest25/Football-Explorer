@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Football Archive | Player Database</title>
+
+    <link rel="stylesheet" href="./players.css" />
+  </head>
+
+  <body>
+    <header class="dashboard-header">
+      <div class="logo">Football <span>Archive</span></div>
+
+      <nav class="nav-links">
+        <a href="index.html"> Explorer </a>
+
+        <a href="players.html" class="active"> Player Database </a>
+
+        <a href="arena.html"> Football Arena </a>
+
+         <a href="packs.html"> Pack Opening </a>
+
+          <a href="collection.html"> Collection </a>
+      </nav>
+    </header>
+
+    <main class="players-page">
+      <!-- HERO -->
+
+      <section class="players-hero">
+        <h1>Browse Football Legends</h1>
+
+        <p>
+          Explore every footballer available in the Football Archive database.
+          Search, filter and discover players from around the world.
+        </p>
+
+        <!-- DATABASE STATS -->
+
+        <div class="database-stats">
+          <div class="database-stat">
+            <span> ⚽ </span>
+
+            <strong id="playerCount"> 110 </strong>
+
+            <p>Players</p>
+          </div>
+
+          <div class="database-stat">
+            <span> 🌍 </span>
+
+            <strong> 45 </strong>
+
+            <p>Nations</p>
+          </div>
+
+          <div class="database-stat">
+            <span> 🏟️ </span>
+
+            <strong> 50+ </strong>
+
+            <p>Clubs</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTROLS -->
+
+      <section class="players-controls">
+        <input type="text" id="playerSearch" placeholder="Search players..." />
+
+        <select id="sortPlayers">
+          <option value="az">A-Z</option>
+
+          <option value="za">Z-A</option>
+        </select>
+      </section>
+
+      <!-- PLAYER GRID -->
+
+      <section id="playersGrid" class="players-grid"></section>
+    </main>
+
+    <footer class="site-footer">
+      <h3>Football Archive</h3>
+
+      <p>
+        Your football player database built with HTML, CSS, JavaScript, JSON and
+        TheSportsDB API.
+      </p>
+
+      <p>© 2026 Football Archive</p>
+    </footer>
+
+  <script type="module" src="players.js"></script>
+  </body>
+</html>

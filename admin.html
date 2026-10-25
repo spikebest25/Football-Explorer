@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Admin Dashboard | Football Archive</title>
+    <link rel="stylesheet" href="admin.css" />
+    <style>
+      /* Inline Hover Arrow Controls */
+      .inline-edit-cell {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        position: relative;
+      }
+      .inline-arrows {
+        display: none;
+        flex-direction: column;
+        gap: 1px;
+      }
+      tr:hover .inline-arrows {
+        display: flex;
+      }
+      .arrow-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        font-size: 9px;
+        padding: 1px 4px;
+        border-radius: 3px;
+        line-height: 1;
+        transition: 0.2s;
+      }
+      .arrow-btn:hover {
+        background: #3b82f6;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="adminAuthWarning" role="status">Checking admin permissions…</div>
+    <div id="adminDashboard" style="display: none">
+      <button
+        class="sidebar-backdrop"
+        id="sidebarBackdrop"
+        aria-label="Close navigation"
+        tabindex="-1"
+      ></button>
+      <aside class="sidebar" id="adminSidebar" aria-label="Main navigation">
+        <a class="sidebar-brand" href="admin.html"
+          ><svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <path
+              d="m12 7 5 4-2 6H9l-2-6zM12 3v4m9 5-4-1m1 8-3-2m-9 2 3-2m-6-5 4-1"
+            /></svg
+          ><strong>Football Archive<span>ADMIN WORKSPACE</span></strong></a
+        >
+        <div class="workspace-label">
+          Workspace <span class="badge common">Admin</span>
+        </div>
+        <nav>
+          <a href="#overview" class="nav-link active"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="3" width="7" height="7" rx="2" />
+              <rect x="14" y="3" width="7" height="7" rx="2" />
+              <rect x="3" y="14" width="7" height="7" rx="2" />
+              <rect x="14" y="14" width="7" height="7" rx="2" /></svg
+            ><span>Overview</span></a
+          ><a href="#players" class="nav-link"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="9" cy="8" r="3" />
+              <path
+                d="M3 21v-3a6 6 0 0 1 12 0v3m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 5"
+              /></svg
+            ><span>Player directory</span></a
+          ><a href="#analytics" class="nav-link"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 3v18h18M7 16v-4m5 4V8m5 8V5" /></svg
+            ><span>Analytics</span></a
+          >
+          <div class="nav-heading">MANAGEMENT</div>
+          <a href="#add-player" class="nav-link"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 5v14M5 12h14" /></svg
+            ><span>Add new player</span></a
+          >
+          <div class="nav-heading">APPLICATION</div>
+          <a href="index.html" class="nav-link"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path
+                d="m12 7 5 4-2 6H9l-2-6zM12 3v4m9 5-4-1m1 8-3-2m-9 2 3-2m-6-5 4-1"
+              /></svg
+            ><span>Football explorer</span></a
+          ><a href="packs.html" class="nav-link"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="m12 3 9 5v9l-9 5-9-5V8zM3 8l9 5 9-5M12 13v9M7 5l10 6"
+              /></svg
+            ><span>Pack simulator</span></a
+          ><a href="collection.html" class="nav-link"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="9" cy="8" r="3" />
+              <path
+                d="M3 21v-3a6 6 0 0 1 12 0v3m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 5"
+              /></svg
+            ><span>User collection</span></a
+          ><a href="arena.html" class="nav-link"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m12 3 9 4v6c0 5-9 9-9 9s-9-4-9-9V7zM8 12l3 3 5-6" /></svg
+            ><span>Arena</span></a
+          >
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="session-card">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m12 3 9 4v6c0 5-9 9-9 9s-9-4-9-9V7zM8 12l3 3 5-6" />
+            </svg>
+            <div>
+              <strong>Protected workspace</strong
+              ><small>Administrator access only</small>
+            </div>
+          </div>
+          <div class="admin-profile">
+            <span class="avatar">A</span>
+            <div>
+              <strong>Administrator</strong
+              ><small id="adminEmailDisplay">Active session</small>
+            </div>
+            <i class="status-dot"></i>
+          </div>
+        </div>
+      </aside>
+      <div class="main-content">
+        <header class="top-bar">
+          <div class="top-left">
+            <button
+              id="sidebarToggle"
+              class="icon-button"
+              aria-label="Toggle navigation"
+              aria-controls="adminSidebar"
+              aria-expanded="false"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg></button
+            ><label class="top-search"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="10" cy="10" r="7" />
+                <path d="m15 15 6 6" /></svg
+              ><input
+                id="globalSearch"
+                type="search"
+                placeholder="Search players…"
+                aria-label="Search players"
+            /></label>
+          </div>
+          <div class="top-actions">
+            <span class="secure-label"
+              ><i class="status-dot"></i> Admin workspace</span
+            ><button
+              id="themeToggle"
+              class="icon-button"
+              aria-label="Switch color theme"
+              aria-pressed="false"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"
+                />
+              </svg></button
+            ><span class="avatar small-avatar" title="Administrator">A</span>
+          </div>
+        </header>
+        <main class="dashboard-body" id="overview">
+          <div class="page-heading">
+            <div>
+              <h1>Overview</h1>
+              <p>Welcome to your football management workspace.</p>
+            </div>
+            <a class="btn btn-primary" href="#add-player"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              Add player</a
+            >
+          </div>
+          <div class="banner-grid">
+            <section class="welcome-card">
+              <span class="eyebrow">FOOTBALL ARCHIVE / ADMIN</span>
+              <h2>👋 Hello, Administrator</h2>
+              <p>
+                Keep your player universe in top form.<br />Manage your roster,
+                explore insights, and build the next great collection.
+              </p>
+              <a href="#players" class="btn btn-dark"
+                >Manage players
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+              ></a>
+              <div class="banner-art" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path
+                    d="m12 7 5 4-2 6H9l-2-6zM12 3v4m9 5-4-1m1 8-3-2m-9 2 3-2m-6-5 4-1"
+                  />
+                </svg>
+              </div>
+            </section>
+            <section class="card idea-card">
+              <div class="card-heading">
+                <h2>Ideas for you</h2>
+                <div>
+                  <button
+                    id="previousIdea"
+                    class="icon-button compact"
+                    aria-label="Previous idea"
+                  >
+                    ‹</button
+                  ><button
+                    id="nextIdea"
+                    class="icon-button compact"
+                    aria-label="Next idea"
+                  >
+                    ›
+                  </button>
+                </div>
+              </div>
+              <span class="idea-symbol">✧</span>
+              <h3 id="ideaTitle">Expand your player universe</h3>
+              <p id="ideaDesc">Add new football legends to your collection.</p>
+              <a href="#add-player" class="btn btn-outline"
+                >Add a player
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+              ></a>
+            </section>
+          </div>
+          <div class="metrics-grid">
+            <section class="metric-card card">
+              <div class="metric-header">
+                <span class="metric-icon amber"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="9" cy="8" r="3" />
+                    <path
+                      d="M3 21v-3a6 6 0 0 1 12 0v3m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 5"
+                    /></svg></span
+                >Total players
+              </div>
+              <div class="metric-bottom">
+                <strong id="metricTotalPlayers">—</strong
+                ><span class="metric-note">Player database</span>
+              </div>
+            </section>
+            <section class="metric-card card">
+              <div class="metric-header">
+                <span class="metric-icon mint"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 3v18h18M7 16v-4m5 4V8m5 8V5" /></svg></span
+                >Average rating
+              </div>
+              <div class="metric-bottom">
+                <strong id="metricAverageRating">—</strong
+                ><span class="metric-note">Overall rating</span>
+              </div>
+            </section>
+            <section class="metric-card card">
+              <div class="metric-header">
+                <span class="metric-icon blue"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="m12 3 9 4v6c0 5-9 9-9 9s-9-4-9-9V7zM8 12l3 3 5-6"
+                    /></svg></span
+                >Security status
+              </div>
+              <div class="metric-bottom">
+                <strong class="security-value">Verified</strong
+                ><span class="badge rare">Admin session</span>
+              </div>
+            </section>
+          </div>
+          <div class="charts-grid" id="analytics">
+            <section class="card">
+              <div class="card-heading">
+                <div>
+                  <h2>Rarity distribution</h2>
+                  <p>Your player database at a glance</p>
+                </div>
+                <span class="badge common">Live data</span>
+              </div>
+              <div id="rarityChart" class="rarity-chart">
+                <p class="empty-state">Loading player distribution…</p>
+              </div>
+            </section>
+            <section class="card">
+              <div class="card-heading">
+                <div>
+                  <h2>Top rated players</h2>
+                  <p>The standout names in your roster</p>
+                </div>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 3v18h18M7 16v-4m5 4V8m5 8V5" />
+                </svg>
+              </div>
+              <div id="topPlayers" class="top-players">
+                <p class="empty-state">Loading player rankings…</p>
+              </div>
+              <a href="#players" class="text-link"
+                >View all players
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+              ></a>
+            </section>
+          </div>
+          <section class="card" id="add-player">
+            <div class="card-heading">
+              <div>
+                <h2>Add new player</h2>
+                <p>Create a football card with a fixed overall rating.</p>
+              </div>
+              <span class="metric-icon mint"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 5v14M5 12h14" /></svg
+              ></span>
+            </div>
+            <form id="addPlayerForm">
+              <div class="form-grid">
+                <label
+                  >Player name<input
+                    type="text"
+                    id="playerName"
+                    placeholder="e.g. Lionel Messi"
+                    required
+                    class="input-field"
+                    maxlength="100" /></label
+                ><label
+                  >Club / Team<input
+                    type="text"
+                    id="playerTeam"
+                    placeholder="e.g. Inter Miami"
+                    required
+                    class="input-field"
+                    maxlength="100" /></label
+                ><label
+                  >Nationality<input
+                    type="text"
+                    id="playerNation"
+                    placeholder="e.g. Argentina"
+                    required
+                    class="input-field"
+                    maxlength="80" /></label
+                ><label
+                  >Position<input
+                    type="text"
+                    id="playerPosition"
+                    placeholder="e.g. ST, CM, GK"
+                    required
+                    class="input-field"
+                    maxlength="10" /></label
+                ><label
+                  >Overall rating<input
+                    type="number"
+                    id="playerRating"
+                    placeholder="80–99"
+                    required
+                    class="input-field"
+                    min="80"
+                    max="99"
+                    step="1" /></label
+                ><label
+                  >Rarity<select id="playerRarity" class="input-field">
+                    <option value="common">Common (80–83)</option>
+                    <option value="rare">Rare (84–86)</option>
+                    <option value="epic">Epic (87–89)</option>
+                    <option value="hero">Hero (90–92)</option>
+                    <option value="legendary">Legendary (93–95)</option>
+                    <option value="icon">Icon (96–99)</option>
+                  </select></label
+                ><label class="wide-field"
+                  >Player image URL <span class="optional">(optional)</span
+                  ><input
+                    type="url"
+                    id="playerImage"
+                    class="input-field"
+                    placeholder="https://example.com/player.jpg"
+                /></label>
+              </div>
+              <div class="form-footer">
+                <p>Player details are saved to your existing database.</p>
+                <div>
+                  <button class="btn btn-outline" type="reset">Reset</button
+                  ><button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="savePlayerButton"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                    Save player
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
+          <section class="card directory" id="players">
+            <div class="card-heading">
+              <div>
+                <h2>
+                  Player directory
+                  <span class="count-pill" id="directoryCount">0</span>
+                </h2>
+                <p>Browse and manage your football archive.</p>
+              </div>
+              <button type="button" class="btn btn-outline" id="refreshPlayers">
+                Refresh
+              </button>
+            </div>
+            <div class="table-toolbar">
+              <label class="search-field"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="10" cy="10" r="7" />
+                  <path d="m15 15 6 6" /></svg
+                ><input
+                  type="search"
+                  id="playerSearch"
+                  placeholder="Search name, club, nationality…"
+                  aria-label="Filter players" /></label
+              ><select
+                id="rarityFilter"
+                class="input-field"
+                aria-label="Filter by rarity"
+              >
+                <option value="">All rarities</option>
+                <option>common</option>
+                <option>rare</option>
+                <option>epic</option>
+                <option>hero</option>
+                <option>legendary</option>
+                <option>icon</option></select
+              ><select
+                id="playerSort"
+                class="input-field"
+                aria-label="Sort players"
+              >
+                <option value="name">Name A–Z</option>
+                <option value="rating">Highest rating</option>
+                <option value="team">Club A–Z</option>
+              </select>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Player</th>
+                    <th>Club / Team</th>
+                    <th>Position</th>
+                    <th>OVR</th>
+                    <th>Rarity</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="playerTableBody">
+                  <tr>
+                    <td colspan="6" class="empty-state">Loading players…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-footer">
+              <span id="tableSummary" aria-live="polite"
+                >Loading directory…</span
+              >
+              <div>
+                <button id="previousPage" class="btn btn-outline" type="button">
+                  Previous</button
+                ><span id="pageIndicator">1 / 1</span
+                ><button id="nextPage" class="btn btn-outline" type="button">
+                  Next
+                </button>
+              </div>
+            </div>
+          </section>
+          <footer class="page-footer">
+            <span>© Football Archive</span
+            ><span>Administration workspace · Inspired by Dasher</span>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <div id="adminToast" class="toast" role="status" hidden></div>
+    <script type="module" src="admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,403 @@
+/* ===========================
+   RESET
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+:root {
+  --background: #07111f;
+  --panel: rgba(16, 24, 39, 0.78);
+  --border: rgba(255, 255, 255, 0.08);
+
+  --blue: #3b82f6;
+  --blue-hover: #60a5fa;
+
+  --text: #ffffff;
+  --text-light: #cbd5e1;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+
+  color: var(--text);
+
+  background:
+    linear-gradient(rgba(7, 17, 31, 0.88), rgba(7, 17, 31, 0.93)),
+    url("ronaldinho.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+.dashboard-container {
+  width: 100%;
+  max-width: none;
+  margin: 45px 0;
+}
+/* ===========================
+   HERO BANNER
+=========================== */
+
+.hero-banner {
+  height: 320px;
+
+  width: 100%;
+
+  border-radius: 28px;
+  overflow: hidden;
+
+  margin-bottom: 40px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 60px;
+
+  position: relative;
+
+  background:
+    linear-gradient(rgba(5, 10, 18, 0.35), rgba(5, 10, 18, 0.65)),
+    url("ronaldinho.jpg");
+
+  background-size: cover;
+  background-position: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  animation: fadeHero 1.2s ease;
+}
+
+@keyframes fadeHero {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-banner::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at left center,
+      rgba(59, 130, 246, 0.45),
+      transparent 45%
+    ),
+    linear-gradient(
+      to right,
+      rgba(5, 10, 18, 0.55) 20%,
+      rgba(5, 10, 18, 0.8) 55%,
+      rgba(5, 10, 18, 0.95) 100%
+    );
+
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 650px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+
+  margin-bottom: 18px;
+
+  line-height: 1.1;
+
+  font-weight: 800;
+}
+
+.hero-content p {
+  font-size: 1.15rem;
+
+  color: #d6deea;
+
+  line-height: 1.7;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.toggle-btn {
+  width: 52px;
+  height: 52px;
+  border: none;
+
+  background: #2563eb;
+
+  color: white;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  margin-bottom: 25px;
+
+  font-size: 18px;
+
+  transition: 0.25s;
+}
+
+.toggle-btn:hover {
+  background: #3b82f6;
+}
+
+.site-footer h3 {
+  margin-bottom: 10px;
+}
+
+.site-footer p {
+  margin: 8px 0;
+
+  opacity: 0.8;
+}
+/* ===========================
+APP LAYOUT
+=========================== */
+
+.app {
+  display: flex;
+
+  min-height: 100vh;
+}
+
+/* ===========================
+SIDEBAR
+=========================== */
+
+.sidebar {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+
+  top: 0;
+
+  padding: 28px 18px;
+
+  width: 270px;
+
+  height: 100vh;
+
+  background: #081321;
+
+  transition: 0.35s ease;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sidebar-top h2 {
+  margin: 0;
+
+  font-size: 1.6rem;
+}
+.sidebar-top p {
+  color: #8fa7c2;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+.sidebar nav {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+.sidebar nav a {
+  text-decoration: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  width: 100%;
+  padding: 15px 18px;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  overflow: hidden;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition:
+    background 0.25s,
+    transform 0.25s,
+    color 0.25s;
+  font-weight: 600;
+}
+.sidebar nav a:hover {
+  background: #2563eb;
+  transform: translateX(6px);
+}
+.sidebar-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 28px 0;
+}
+.sidebar-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sidebar-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.sidebar-card:hover {
+  background: rgba(59, 130, 246, 0.25);
+}
+.sidebar-bottom {
+  margin-top: 35px;
+}
+.sidebar-bottom p {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.progress {
+  height: 10px;
+  background: #122236;
+  border-radius: 100px;
+  overflow: hidden;
+}
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 100px;
+}
+.sidebar-bottom small {
+  display: block;
+  margin-top: 8px;
+  color: #9bb0c7;
+}
+.content {
+  margin-left: 270px;
+  width: calc(100vw - 270px);
+  transition: 0.35s ease;
+  min-height: 100vh;
+  padding: 45px 55px;
+  overflow-x: hidden;
+}
+.content.expanded {
+  margin-left: 85px;
+  width: calc(100% - 85px);
+}
+.sidebar.collapsed p,
+.sidebar.collapsed small,
+.sidebar.collapsed .sidebar-card,
+.sidebar.collapsed .sidebar-divider,
+.sidebar.collapsed .sidebar-bottom {
+  display: none;
+}
+.sidebar nav span {
+  transition: 0.3s;
+}
+.sidebar.collapsed .nav-text {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  margin: 0;
+  display: none;
+}
+.sidebar.collapsed {
+  width: 90px;
+}
+.sidebar.collapsed .sidebar-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar.collapsed .sidebar-top p {
+  display: none;
+}
+.sidebar-extra,
+.sidebar-bottom {
+  transition: 0.3s;
+}
+.sidebar.collapsed .sidebar-extra,
+.sidebar.collapsed .sidebar-bottom {
+  opacity: 0;
+  pointer-events: none;
+}
+.site-footer {
+  width: 100%;
+  margin-top: 80px;
+  padding: 40px 20px;
+  text-align: center;
+  background: #101820;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px 20px 0 0;
+}
+.sidebar.collapsed .sidebar-top h2 {
+  font-size: 2rem;
+}
+.sidebar.collapsed .sidebar-top h2 span {
+  display: none;
+}
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+.sidebar.collapsed nav a {
+  width: 52px;
+  height: 52px;
+
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  gap: 0;
+}
+/* ===========================
+   SIDEBAR SCROLLBAR
+=========================== */
+
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.7);
+    border-radius: 999px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #60a5fa;
+}

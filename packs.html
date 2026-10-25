@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Football Archive | Pack Opening</title>
+
+    <link rel="stylesheet" href="layout.css" />
+    <link rel="stylesheet" href="packs.css" />
+  </head>
+
+  <body>
+
+<div id="flash" class="flash"></div>
+    <div class="app">
+      <!-- ================= SIDEBAR ================= -->
+
+      <aside class="sidebar">
+        <button id="toggleSidebar" class="toggle-btn">☰</button>
+
+        <div class="sidebar-top">
+          <h2>⚽ <span>Football Archive</span></h2>
+          <p>Ultimate Football Hub</p>
+        </div>
+
+        <nav>
+          <a href="index.html">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Explorer</span>
+          </a>
+
+          <a href="players.html">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Player Database</span>
+          </a>
+
+          <a href="arena.html">
+            <span class="nav-icon">⚽</span>
+            <span class="nav-text">Football Arena</span>
+          </a>
+
+          <a href="packs.html">
+            <span class="nav-icon">📦</span>
+            <span class="nav-text">Pack Opening</span>
+          </a>
+
+          <a href="collection.html">
+            <span class="nav-icon">🎴</span>
+            <span class="nav-text">Ultimate Collection</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        
+
+        <div class="sidebar-bottom">
+          <p>Coins</p>
+
+          <div class="progress">
+            <div class="progress-fill" id="coinProgress"></div>
+          </div>
+
+          <small id="coinDisplay"></small>
+        </div>
+      </aside>
+
+      <!-- ================= CONTENT ================= -->
+
+      <div class="content">
+        <!-- HERO -->
+
+        <section class="hero-banner">
+          <div class="hero-content">
+            <h1>Pack Opening</h1>
+
+            <p>
+              Open football packs, collect legendary players and complete your
+              Ultimate Collection.
+            </p>
+          </div>
+        </section>
+
+        <!-- STATS -->
+
+        <section class="pack-stats">
+          <div class="stat-box">
+            <h3>Coins</h3>
+            <h2 id="coinDisplayStats">🪙</h2>
+          </div>
+
+          <div class="stat-box">
+            <h3>Packs Opened</h3>
+            <h2 id="packsOpened">0</h2>
+          </div>
+
+          <div class="stat-box">
+            <h3>Collection</h3>
+            <h2 id="collectionOwned">0 / 110</h2>
+          </div>
+
+          <div class="stat-box">
+            <h3>Best Pull</h3>
+            <h2 id="bestPull">None</h2>
+          </div>
+        </section>
+
+        <!-- MAIN -->
+
+        <section class="pack-layout">
+          <!-- LEFT -->
+
+          <div class="pack-section">
+            <div class="pack-container">
+              <div id="pack" class="pack">
+                <div class="pack-front">
+                  <div class="pack-logo">⚽</div>
+
+                  <h2>GOLD PACK</h2>
+
+                  <p>Contains 1 Football Player</p>
+                </div>
+              </div>
+            </div>
+
+            <button id="openPackBtn" class="open-pack-btn">
+              Open Pack (100 🪙)
+            </button>
+          </div>
+
+          <!-- RIGHT -->
+
+          <aside class="shop-panel">
+            <div class="panel-card">
+              <h2>🎁 Daily Reward</h2>
+
+              <p>Claim free coins every day.</p>
+
+              <button id="dailyRewardBtn">Claim 200 Coins</button>
+            </div>
+
+            <div class="panel-card">
+              <h2>🛒 Shop</h2>
+
+              <div class="shop-item">
+                <h3>🛡 Duplicate Protection</h3>
+
+                <p>Next 5 packs contain no duplicates.</p>
+
+                <button id="buyProtection">500 🪙</button>
+              </div>
+
+              <div class="shop-item">
+                <h3>🍀 Lucky Booster</h3>
+
+                <p>Higher Legendary chance.</p>
+
+                <button id="buyLucky">400 🪙</button>
+              </div>
+
+              <div class="shop-item">
+                <h3>⭐ Icon Booster</h3>
+
+                <p>Doubles Icon chance for one pack.</p>
+
+                <button id="buyIcon">1200 🪙</button>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <h2>🏆 Achievements</h2>
+
+              <p id="achievementText">Start collecting players!</p>
+            </div>
+          </aside>
+        </section>
+
+        
+        <!-- FOOTER -->
+
+        <footer class="site-footer">
+          <h3>Football Archive</h3>
+
+          <p>Build the ultimate football card collection.</p>
+
+          <p>© 2026 Football Archive</p>
+        </footer>
+        <!-- CARD REVEAL -->
+
+        <section id="revealSection" class="reveal-section">
+
+<div class="reveal-container">
+
+<div id="playerCard" class="player-card">
+
+<div id="cardRating" class="card-rating">90</div>
+
+<div id="cardRarity" class="rarity-badge">COMMON</div>
+
+<div id="cardNew" class="new-badge">NEW</div>
+
+<img id="cardImage" src="" alt="Player" />
+
+<h2 id="cardName">Player</h2>
+
+<div class="player-info">
+<div class="player-info">
+
+    <div class="info-row">
+        <span id="cardNation"></span>
+    </div>
+
+    <div class="info-row">
+        <img id="clubBadge" class="club-badge">
+        <span id="cardClub"></span>
+    </div>
+
+    <div class="info-row">
+        <span id="cardPosition"></span>
+    </div>
+
+</div>
+</div>
+
+</div>
+
+<div class="reveal-buttons">
+
+<button id="anotherPack">Open Another Pack</button>
+
+<button id="viewCollection">View Collection</button>
+
+</div>
+
+</div>
+
+</section>
+      </div>
+    </div>
+    <script src="economy.js"></script>
+    <script type="module" src="packs.js"></script>
+  </body>
+</html>

@@ -1,0 +1,366 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+body {
+  margin: 0;
+
+  font-family: "Segoe UI", sans-serif;
+
+  color: white;
+
+  background:
+    linear-gradient(rgba(7, 17, 31, 0.88), rgba(7, 17, 31, 0.93)),
+    url("ronaldinho.jpg");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  background-attachment: fixed;
+}
+/* Ensure the navigation container doesn't force wrapping */
+nav, header, .sidebar {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 15px;
+}
+
+/* Prevent text inside navigation links and buttons from breaking into multiple lines */
+nav a, header a, .sidebar a, 
+nav span, header span, .sidebar span,
+#adminNavLinkId a {
+  white-space: nowrap;
+}
+/* ===========================
+   HEADER
+=========================== */
+
+.dashboard-header {
+  width: 100%;
+
+  padding: 22px 5%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  box-sizing: border-box;
+
+  backdrop-filter: blur(12px);
+
+  background: rgba(10, 15, 25, 0.45);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+}
+
+.logo {
+  font-size: 2rem;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #3b82f6;
+}
+
+.nav-links {
+
+    display:flex;
+
+    gap:20px;
+
+    margin-right:20px;
+
+}
+
+.nav-links a {
+  color: white;
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  transition: 0.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #3b82f6;
+}
+
+/* ===========================
+   PAGE
+=========================== */
+
+.players-page {
+  width: 90%;
+
+  max-width: 1400px;
+
+  margin: auto;
+
+  padding: 40px 0;
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.players-hero {
+  text-align: center;
+
+  margin-bottom: 45px;
+}
+
+.players-hero h1 {
+  font-size: 3rem;
+
+  margin-bottom: 15px;
+}
+
+.players-hero p {
+  color: #cbd5e1;
+
+  font-size: 1.1rem;
+
+  max-width: 700px;
+
+  margin: 10px auto;
+}
+
+/* ===========================
+   DATABASE STATS
+=========================== */
+
+.database-stats {
+  margin-top: 35px;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 25px;
+
+  flex-wrap: wrap;
+}
+
+.database-stat {
+  min-width: 170px;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition: 0.3s;
+}
+
+.database-stat:hover {
+  transform: translateY(-5px);
+}
+
+.database-stat span {
+  font-size: 28px;
+}
+
+.database-stat strong {
+  display: block;
+
+  font-size: 32px;
+
+  margin: 8px 0;
+
+  color: #3b82f6;
+}
+
+.database-stat p {
+  margin: 0;
+}
+
+/* ===========================
+   CONTROLS
+=========================== */
+
+.players-controls {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-bottom: 35px;
+
+  flex-wrap: wrap;
+}
+
+.players-controls input,
+.players-controls select {
+  padding: 12px 18px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-size: 16px;
+}
+
+/* ===========================
+   PLAYER GRID
+=========================== */
+
+.players-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 28px;
+}
+
+/* ===========================
+   PLAYER CARD
+=========================== */
+
+.player-card {
+  background: #1b2432;
+
+  border-radius: 18px;
+
+  padding: 28px 22px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.player-card:hover {
+  transform: translateY(-8px) scale(1.02);
+
+  background: #243447;
+}
+
+.player-avatar {
+  width: 100px;
+
+  height: 100px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: #13202f;
+
+  border: 4px solid #3b82f6;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  font-size: 32px;
+
+  font-weight: 700;
+
+  color: #3b82f6;
+}
+
+.player-avatar img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.player-card h2 {
+  margin-bottom: 10px;
+
+  font-size: 23px;
+}
+
+.player-card p {
+  margin: 8px 0;
+
+  opacity: 0.9;
+}
+
+.nation {
+  color: #3b82f6;
+
+  font-weight: 600;
+}
+
+.player-card hr {
+  margin: 18px 0;
+
+  border: none;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.view-profile {
+  margin-top: 22px;
+
+  color: #3b82f6;
+
+  font-weight: 700;
+
+  transition: 0.25s;
+}
+
+.player-card:hover .view-profile {
+  letter-spacing: 1px;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.site-footer {
+  margin-top: 80px;
+
+  padding: 40px 20px;
+
+  text-align: center;
+
+  background: rgba(10, 15, 25, 0.7);
+
+  backdrop-filter: blur(12px);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-footer h3 {
+  font-size: 1.6rem;
+}
+
+.site-footer p {
+  color: #cbd5e1;
+}
