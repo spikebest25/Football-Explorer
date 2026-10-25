@@ -2,11 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Football Archive | Arena</title>
-
     <link rel="stylesheet" href="arena.css" />
   </head>
 
@@ -15,54 +12,48 @@
       <div class="logo">Football <span>Archive</span></div>
 
       <nav class="nav-links">
-        <a href="index.html"> Explorer </a>
-
-        <a href="players.html"> Player Database </a>
-
-        <a href="arena.html" class="active"> Football Arena </a>
-
+        <a href="index.html">Explorer</a>
+        <a href="players.html">Player Database</a>
+        <a href="arena.html" class="active">Football Arena</a>
         <a href="packs.html">
           <span class="nav-text">Pack Opening</span>
         </a>
-         <a href="collection.html"> Collection</a>
+        <a href="collection.html">Collection</a>
       </nav>
     </header>
 
     <main class="arena-page">
       <section class="arena-hero">
         <h1>Football Arena</h1>
-
         <p>
-          Build your dream 5-a-side teams and watch them battle in a live match
-          simulation.
+          Build your dream 5-a-side teams and watch them battle in a live match simulation.
         </p>
       </section>
 
       <section class="arena-layout">
         <div class="team-panel">
-          <h2 class="blue-title">🔵 Team Blue</h2>
+          <div class="panel-header">
+            <h2 class="blue-title">🔵 Team Blue</h2>
+            <span class="ovr-badge" id="blueTeamOVR">400 OVR</span>
+          </div>
 
           <div class="mini-pitch">
             <div class="pitch-player gk" id="bluePitchGK">
               🧤
               <span>Goalkeeper</span>
             </div>
-
             <div class="pitch-player def" id="bluePitchDEF">
               🛡
               <span>Defender</span>
             </div>
-
             <div class="pitch-player mid left" id="bluePitchMID1">
               🎯
               <span>Midfielder</span>
             </div>
-
             <div class="pitch-player mid right" id="bluePitchMID2">
               🎯
               <span>Midfielder</span>
             </div>
-
             <div class="pitch-player att" id="bluePitchATT">
               ⚽
               <span>Attacker</span>
@@ -71,31 +62,26 @@
 
           <div class="selectors">
             <label>Goalkeeper</label>
-
             <select class="player-select" id="blueGK">
               <option>Select Goalkeeper</option>
             </select>
 
             <label>Defender</label>
-
             <select class="player-select" id="blueDEF">
               <option>Select Defender</option>
             </select>
 
             <label>Midfielder</label>
-
             <select class="player-select" id="blueMID1">
               <option>Select Midfielder</option>
             </select>
 
             <label>Midfielder</label>
-
             <select class="player-select" id="blueMID2">
               <option>Select Midfielder</option>
             </select>
 
             <label>Attacker</label>
-
             <select class="player-select" id="blueATT">
               <option>Select Attacker</option>
             </select>
@@ -106,70 +92,61 @@
           <div class="scoreboard">
             <div class="score-team">
               <h3>Blue</h3>
-
-              <span id="blueScore"> 0 </span>
+              <span id="blueScore">0</span>
             </div>
 
             <div class="match-centre">
               <div class="timer">0'</div>
-
               <div class="vs">VS</div>
             </div>
 
             <div class="score-team">
               <h3>Red</h3>
-
-              <span id="redScore"> 0 </span>
+              <span id="redScore">0</span>
             </div>
           </div>
 
           <div class="match-buttons">
-            <button id="simulateBtn">▶ Start Match</button>
-            <button id="randomTeamsBtn">🎲 Random Teams</button>
-            <button id="resetBtn">🔄 Reset</button>
+            <button id="simulateBtn" class="btn-primary">▶ Start Match</button>
+            <button id="randomTeamsBtn" class="btn-secondary">🎲 Random Teams</button>
+            <button id="resetBtn" class="btn-accent">🔄 Reset</button>
           </div>
 
           <div class="event-box">
             <h3>Live Commentary</h3>
-
             <div id="matchEvents">
               <p>Select both teams and begin the match.</p>
             </div>
           </div>
+
           <div class="stats-box">
             <h3>📊 Match Statistics</h3>
-
             <table class="stats-table">
               <tr>
                 <td id="blueShots">0</td>
                 <th>Shots</th>
                 <td id="redShots">0</td>
               </tr>
-
               <tr>
                 <td id="blueOnTarget">0</td>
                 <th>Shots on Target</th>
                 <td id="redOnTarget">0</td>
               </tr>
-
               <tr>
                 <td id="bluePossession">50%</td>
                 <th>Possession</th>
                 <td id="redPossession">50%</td>
               </tr>
-
               <tr>
                 <td id="blueCorners">0</td>
                 <th>Corners</th>
                 <td id="redCorners">0</td>
               </tr>
-
               <tr>
                 <td id="blueFouls">0</td>
                 <th>Fouls</th>
                 <td id="redFouls">0</td>
               </tr>
-
               <tr>
                 <td id="blueSaves">0</td>
                 <th>Saves</th>
@@ -180,67 +157,56 @@
         </div>
 
         <div class="team-panel">
-          <h2 class="red-title">🔴 Team Red</h2>
+          <div class="panel-header">
+            <h2 class="red-title">🔴 Team Red</h2>
+            <span class="ovr-badge" id="redTeamOVR">400 OVR</span>
+          </div>
 
           <div class="mini-pitch">
             <div class="pitch-player gk" id="redPitchGK">
               🧤
-
               <span>Goalkeeper</span>
             </div>
-
             <div class="pitch-player def" id="redPitchDEF">
               🛡
-
               <span>Defender</span>
             </div>
-
             <div class="pitch-player mid left" id="redPitchMID1">
               🎯
-
               <span>Midfielder</span>
             </div>
-
             <div class="pitch-player mid right" id="redPitchMID2">
               🎯
-
               <span>Midfielder</span>
             </div>
-
             <div class="pitch-player att" id="redPitchATT">
               ⚽
-
               <span>Attacker</span>
             </div>
           </div>
 
           <div class="selectors">
             <label>Goalkeeper</label>
-
             <select class="player-select" id="redGK">
               <option>Select Goalkeeper</option>
             </select>
 
             <label>Defender</label>
-
             <select class="player-select" id="redDEF">
               <option>Select Defender</option>
             </select>
 
             <label>Midfielder</label>
-
             <select class="player-select" id="redMID1">
               <option>Select Midfielder</option>
             </select>
 
             <label>Midfielder</label>
-
             <select class="player-select" id="redMID2">
               <option>Select Midfielder</option>
             </select>
 
             <label>Attacker</label>
-
             <select class="player-select" id="redATT">
               <option>Select Attacker</option>
             </select>
@@ -251,9 +217,7 @@
 
     <footer class="site-footer">
       <h3>Football Archive</h3>
-
       <p>Explore players, browse legends and simulate football battles.</p>
-
       <p>Created by Tony • © 2026 Football Archive</p>
     </footer>
 

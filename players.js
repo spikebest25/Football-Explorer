@@ -95,7 +95,7 @@ function displayPlayers(playersArray) {
         `;
 
     card.addEventListener("click", () => {
-      window.location.href = `explorer.html?player=${encodeURIComponent(playerName)}`;
+      window.location.href = `index.html?player=${encodeURIComponent(playerName)}`;
     });
 
     playersGrid.appendChild(card);

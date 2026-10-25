@@ -543,8 +543,9 @@
                     placeholder="e.g. ST, CM, GK"
                     required
                     class="input-field"
-                    maxlength="10" /></label
+                    maxlength="30" /></label
                 ><label
+
                   >Overall rating<input
                     type="number"
                     id="playerRating"
@@ -554,16 +555,18 @@
                     min="80"
                     max="99"
                     step="1" /></label
-                ><label
-                  >Rarity<select id="playerRarity" class="input-field">
-                    <option value="common">Common (80–83)</option>
-                    <option value="rare">Rare (84–86)</option>
-                    <option value="epic">Epic (87–89)</option>
-                    <option value="hero">Hero (90–92)</option>
-                    <option value="legendary">Legendary (93–95)</option>
-                    <option value="icon">Icon (96–99)</option>
-                  </select></label
-                ><label class="wide-field"
+                HTML
+<label>Rarity
+  <select id="playerRarity" class="input-field">
+    <option value="common">Common (80–83)</option>
+    <option value="rare">Rare (84–86)</option>
+    <option value="epic">Epic (87–89)</option>
+    <option value="legendary">Legendary (90–92)</option>
+    <option value="hero">Hero (93–95)</option>
+    <option value="icon">Icon (96–99)</option>
+  </select>
+</label>
+                <label class="wide-field"
                   >Player image URL <span class="optional">(optional)</span
                   ><input
                     type="url"

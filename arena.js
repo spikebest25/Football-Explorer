@@ -4,6 +4,7 @@ import { initHeaderAuth } from './header.js';
 
 // Call this after your page loads
 initHeaderAuth();
+
 // ===========================
 // ELEMENTS
 // ===========================
@@ -59,33 +60,68 @@ loadFirestorePlayers();
 
 function getRoles(position) {
   if (!position) return [];
-  position = position.toLowerCase();
+  const pos = String(position).trim().toLowerCase();
 
   let roles = [];
 
-  if (position.includes("goalkeeper") || position.includes("keeper") || position === "gk") {
+  if (pos.includes("goalkeeper") || pos.includes("keeper") || pos === "gk") {
     roles.push("gk");
   }
 
-  if (position.includes("back") || position.includes("sweeper") || position.includes("libero") || position.includes("defender")) {
+  if (
+    pos.includes("back") ||
+    pos.includes("sweeper") ||
+    pos.includes("libero") ||
+    pos.includes("defender") ||
+    pos.includes("centre-back") ||
+    pos.includes("fullback")
+  ) {
     roles.push("defender");
   }
 
-  if (position.includes("midfielder") || position.includes("midfield")) {
+  if (
+    pos.includes("midfielder") ||
+    pos.includes("midfield") ||
+    pos.includes("mid")
+  ) {
     roles.push("midfielder");
   }
 
   if (
-    position.includes("forward") ||
-    position.includes("winger") ||
-    position.includes("striker") ||
-    position.includes("attacker") ||
-    position.includes("wing")
+    pos.includes("forward") ||
+    pos.includes("winger") ||
+    pos.includes("striker") ||
+    pos.includes("attacker") ||
+    pos.includes("wing") ||
+    pos.includes("lw") ||
+    pos.includes("rw") ||
+    pos.includes("st") ||
+    pos.includes("cf")
   ) {
     roles.push("attacker");
   }
 
   return roles;
+}
+
+// ===========================
+// TEAM STRENGTH & ODDS CALCULATOR
+// ===========================
+
+function calculateTeamStrength(team) {
+  return team.reduce((sum, p) => sum + (Number(p?.rating) || 80), 0);
+}
+
+function getTeamWinProbabilities(blueTeam, redTeam) {
+  const blueOVR = calculateTeamStrength(blueTeam);
+  const redOVR = calculateTeamStrength(redTeam);
+  const diff = blueOVR - redOVR;
+
+  // Scale: 0 diff = 50%/50%, 15 diff = 55%/45% (+5%), 95 diff = 70%/30% (+20%)
+  let blueWinChance = 0.5 + (diff / 95) * 0.20;
+  blueWinChance = Math.max(0.15, Math.min(0.85, blueWinChance));
+
+  return { blueOVR, redOVR, diff, blueWinChance };
 }
 
 // ===========================
@@ -113,10 +149,11 @@ function loadSelectors() {
       .filter((player) => {
         return getRoles(player.position).includes(role);
       })
+      .sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')))
       .forEach((player) => {
         let option = document.createElement("option");
         option.value = player.name;
-        option.textContent = player.name;
+        option.textContent = `${player.name} (${player.rating || '—'})`;
         select.appendChild(option);
       });
   });
@@ -147,9 +184,18 @@ function startMatch() {
   }
   resetScores();
 
+  const { blueOVR, redOVR, diff, blueWinChance } = getTeamWinProbabilities(blueTeam, redTeam);
+
   matchRunning = true;
   matchEvents.innerHTML = "";
-  addEvent("🏟️️ The match begins!");
+  addEvent("🏟 The match begins!");
+  addEvent(`📊 Team OVR Ratings — Blue: ${blueOVR} | Red: ${redOVR} (Diff: ${Math.abs(diff)})`);
+
+  if (Math.abs(diff) >= 15) {
+    const favored = diff > 0 ? "BLUE" : "RED";
+    const boost = Math.round(Math.abs(blueWinChance - 0.5) * 100);
+    addEvent(`⚡ FAVORITE: Team ${favored} boasts a +${boost}% win advantage due to superior squad quality!`);
+  }
 
   let minute = 0;
 
@@ -157,7 +203,7 @@ function startMatch() {
     minute += 5;
     if (matchTimer) matchTimer.textContent = `${minute}'`;
 
-    let event = createHighlight(blueTeam, redTeam);
+    let event = createHighlight(blueTeam, redTeam, blueWinChance);
     addEvent(`${minute}' ${event.text}`);
 
     if (event.goal) {
@@ -169,7 +215,6 @@ function startMatch() {
         if (redScore) redScore.textContent = redGoals;
       }
 
-      // Match Storylines
       if (Math.abs(blueGoals - redGoals) === 1) {
         if (blueGoals > redGoals) {
           addEvent("🔵 TEAM BLUE TAKES THE LEAD!! THE FANS ARE ON THEIR FEET!");
@@ -233,18 +278,21 @@ function getTeam(team) {
 // HIGHLIGHTS
 // ===========================
 
-function createHighlight(blueTeam, redTeam) {
-  let team = Math.random() < 0.5 ? blueTeam : redTeam;
-  let player;
+function createHighlight(blueTeam, redTeam, blueWinChance = 0.5) {
+  const isBlueAttacking = Math.random() < blueWinChance;
+  const team = isBlueAttacking ? blueTeam : redTeam;
+  const teamName = isBlueAttacking ? "blue" : "red";
+
   let validPlayers = team.filter((p) => p);
 
   if (validPlayers.length === 0) {
     return {
       goal: false,
-      text: "⚠️️ No players available.",
+      text: "⚠ No players available.",
     };
   }
 
+  let player;
   do {
     player = validPlayers[Math.floor(Math.random() * validPlayers.length)];
   } while (validPlayers.length > 1 && player.name === lastPlayer);
@@ -260,7 +308,6 @@ function createHighlight(blueTeam, redTeam) {
 
   playerStats[player.name].appearances++;
   let scored = canScore(player);
-  let teamName = team === blueTeam ? "blue" : "red";
 
   if (scored) {
     const goalMessages = [
@@ -354,19 +401,21 @@ if (randomTeamsBtn) {
 
 function canScore(player) {
   let roles = getRoles(player.position);
-  let chance = 0.05;
+  let baseChance = 0.05;
 
   if (roles.includes("gk")) {
-    chance = 0.01;
+    baseChance = 0.01;
   } else if (roles.includes("defender")) {
-    chance = 0.04;
+    baseChance = 0.04;
   } else if (roles.includes("midfielder")) {
-    chance = 0.15;
+    baseChance = 0.15;
   } else if (roles.includes("attacker")) {
-    chance = 0.35;
+    baseChance = 0.35;
   }
 
-  return Math.random() < chance;
+  // Slightly boost individual scoring probability based on OVR rating
+  const ratingBonus = ((Number(player?.rating) || 80) - 80) * 0.005;
+  return Math.random() < (baseChance + ratingBonus);
 }
 
 // ===========================
@@ -484,8 +533,15 @@ function displayPitch(team, colour) {
     else icon = "⚽";
 
     const surname = player.name ? player.name.split(" ").pop() : "Unknown";
-    marker.innerHTML = `${icon}<span>${surname}</span>`;
+    marker.innerHTML = `${icon}<span>${surname} (${player.rating || '—'})</span>`;
   });
+
+  // Dynamically update total OVR badge above pitches
+  const teamOVR = calculateTeamStrength(team);
+  const ovrBadge = document.getElementById(`${colour}TeamOVR`);
+  if (ovrBadge) {
+    ovrBadge.textContent = `${teamOVR} OVR`;
+  }
 }
 
 function showMOTM() {
